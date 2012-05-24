@@ -9,8 +9,24 @@
   <body>
     <div id="user_nav">
       <% if user_signed_in? %>
+        <div>
+        <%= link_to "Home", root_path %> |
+        <%= link_to "Profile", page_profile_path %> |
+        <%= link_to "News", page_news_path %> |
+        <%= link_to "Chat", page_chat_path %> |
+        <%= link_to "Jokes", page_jokes_path %>
+        <%= link_to "Settings", page_settings_path %> |
         Signed in as <%= current_user.email %>. Not you?
-        <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+        <%= link_to "logout", destroy_user_session_path, :method => :delete %>
+      </div>
+      <div>
+        <%= form_tag page_search_path, :method => 'get' do %>
+          <p>
+          <%= text_field_tag :search, params[:search] %>
+          <%= submit_tag "Search", :name => nil %>
+          </p>
+        <% end %>
+   </div>
       <% else %>
         <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
       <% end %>

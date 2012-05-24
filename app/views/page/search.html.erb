@@ -1,2 +1,18 @@
-<h1>Page#search</h1>
-<p>Find me in app/views/page/search.html.erb</p>
+<h1>Search Results</h1>
+
+<% if @results %>
+  <% if @results.count > 0 %>
+    <% @results.each do |result| %>
+      <div>
+        <%= result.email %> |
+        <%= link_to "View", page_settings_path %> |
+        <%= link_to "Add", page_settings_path %> |
+        <%= link_to "Send Message", page_settings_path %>
+      </div>
+    <% end %>
+  <% else %>
+    <h1>No results found</h1>
+  <% end %>
+<% else %>
+  <h1>You did not search any user</h1>
+<% end %>

@@ -13,6 +13,7 @@ class PageController < ApplicationController
   end
 
   def search
+    @results = User.search(params[:search])
   end
 
   def news
