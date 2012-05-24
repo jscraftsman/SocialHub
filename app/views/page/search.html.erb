@@ -5,9 +5,9 @@
     <% @results.each do |result| %>
       <div>
         <%= result.email %> |
-        <%= link_to "View", page_settings_path %> |
-        <%= link_to "Add", page_settings_path %> |
-        <%= link_to "Send Message", page_settings_path %>
+        <%= link_to "View profile", :controller => "page", :action => "profile", :id => result %> |
+        <%= link_to "Add friend", :controller => "page", :action => :add_friend, :id => result %> |
+        <%= link_to "Send message", page_settings_path %>
       </div>
     <% end %>
   <% else %>

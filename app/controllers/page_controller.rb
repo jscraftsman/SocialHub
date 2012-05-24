@@ -4,6 +4,11 @@ class PageController < ApplicationController
   end
 
   def profile
+    if params[:id]
+      @user = User.find(params[:id]);
+    else
+      @user = current_user
+    end
   end
 
   def customize
@@ -26,5 +31,13 @@ class PageController < ApplicationController
   end
 
   def inbox
+  end
+
+  def add_friend
+    if current_user.friends.create(:status => "pending")
+      redirect_to page_index_path, :notice => "Added"
+    else
+      render "search", :alert => "Failed"
+    end
   end
 end

@@ -9,6 +9,7 @@ Socialhub::Application.routes.draw do
   get "page/chat"
   get "page/jokes"
   get "page/inbox"
+  get "page/add_friend"
 
   authenticated :user do
     root :to => "page#index"

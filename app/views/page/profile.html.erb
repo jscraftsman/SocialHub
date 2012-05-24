@@ -1,2 +1,6 @@
-<h1>Page#profile</h1>
-<p>Find me in app/views/page/profile.html.erb</p>
+<h1>Profile</h1>
+<% if @user == current_user %>
+  its you
+<% else %>
+  <%= @user.email %>
+<% end %>
