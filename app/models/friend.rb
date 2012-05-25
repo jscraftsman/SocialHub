@@ -1,5 +1,7 @@
 class Friend < ActiveRecord::Base
-  has_and_belongs_to_many :users
+  belongs_to :users
 
-  attr_accessible :status, :user_id
+  attr_accessible :status, :user_id, :friend_id
+
+  scope :pending_friends, lambda {|friend_id| {:conditions => ["friend_id = ? AND status = 'pending'", friend_id]} }
 end

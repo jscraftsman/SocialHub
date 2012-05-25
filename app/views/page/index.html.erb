@@ -1,7 +1,16 @@
 <h1>Page#index</h1>
 <p>Find me in app/views/page/index.html.erb</p>
-<h2>Friends</h2>
-<% current_user.friends do |friend| %>
-  <%= friend.email %>
+<h2>Sent invitations</h2>
+<% @sent_invites.each do |f| %>
+  <%= User.find(f.friend_id).email %> |
+  <%= link_to "Cancel", root_path %>
+  <br />
 <% end %>
+
+<h1>Friend Requests</h1>
+<% @friend_requests.each do |f| %>
+  <%= User.find(f.user_id).email %> |
+  <%= link_to "Accept", root_path %><br />
+<% end %>
+
 

@@ -1,6 +1,8 @@
 class PageController < ApplicationController
   before_filter :authenticate_user!
   def index
+    @sent_invites = current_user.friends(:condition => {:status => "pending"})
+    @friend_requests = Friend.pending_friends(current_user.id)
   end
 
   def profile
@@ -34,7 +36,7 @@ class PageController < ApplicationController
   end
 
   def add_friend
-    if current_user.friends.create(:status => "pending")
+    if current_user.friends.create(:friend_id => params[:id])
       redirect_to page_index_path, :notice => "Added"
     else
       render "search", :alert => "Failed"
