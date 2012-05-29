@@ -2,14 +2,14 @@
 <p>Find me in app/views/page/index.html.erb</p>
 <h2>Sent invitations</h2>
 <% @sent_invites.each do |f| %>
-  <%= User.find(f.friend_id).email %> |
+  <%= get_user_email(f.friend_id) %> |
   <%= link_to "Cancel", root_path %>
   <br />
 <% end %>
 
 <h1>Friend Requests</h1>
 <% @friend_requests.each do |f| %>
-  <%= User.find(f.user_id).email %> |
+  <%= get_user_email(f.user_id) %> |
   <%= link_to "Accept", root_path %><br />
 <% end %>
 

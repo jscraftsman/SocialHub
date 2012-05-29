@@ -35,7 +35,7 @@ class PageController < ApplicationController
   def inbox
   end
 
-  def add_friend
+  def send_friend_request
     if current_user.friends.create(:friend_id => params[:id])
       redirect_to page_index_path, :notice => "Added"
     else

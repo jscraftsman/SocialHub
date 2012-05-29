@@ -7,33 +7,43 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <div id="user_nav">
-      <% if user_signed_in? %>
-        <div>
-        <%= link_to "Home", root_path %> |
-        <%= link_to "Profile", page_profile_path %> |
-        <%= link_to "News", page_news_path %> |
-        <%= link_to "Chat", page_chat_path %> |
-        <%= link_to "Jokes", page_jokes_path %>
-        <%= link_to "Settings", page_settings_path %> |
-        Signed in as <%= current_user.email %>. Not you?
-        <%= link_to "logout", destroy_user_session_path, :method => :delete %>
+    <div id="container">
+      <div id="header">
+        Header
+        <div id="user_nav">
+          <% if user_signed_in? %>
+            <div>
+              <%= link_to "Home", root_path %> |
+              <%= link_to "Profile", page_profile_path %> |
+              <%= link_to "News", page_news_path %> |
+              <%= link_to "Chat", page_chat_path %> |
+              <%= link_to "Jokes", page_jokes_path %>
+              <%= link_to "Settings", page_settings_path %> |
+              Signed in as <%= current_user.email %>. Not you?
+              <%= link_to "logout", destroy_user_session_path, :method => :delete %>
+            </div>
+            <div>
+              <%= form_tag page_search_path, :method => 'get' do %>
+                <div>
+                <%= text_field_tag :search, params[:search] %>
+                <%= submit_tag "Search", :name => nil %>
+                </div>
+              <% end %>
+            </div>
+          <% else %>
+            <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
+          <% end %>
+        </div>
       </div>
-      <div>
-        <%= form_tag page_search_path, :method => 'get' do %>
-          <p>
-          <%= text_field_tag :search, params[:search] %>
-          <%= submit_tag "Search", :name => nil %>
-          </p>
-        <% end %>
-   </div>
-      <% else %>
-        <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
-      <% end %>
+      <div id="content">
+        <div class="notice"><%= notice %></div>
+        <div class="alert"><%= alert %></div>
+        Main Content
+        <%= yield %>
+      </div>
+      <div id="footer">
+        Footer
+      </div>
     </div>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
-
   </body>
 </html>
