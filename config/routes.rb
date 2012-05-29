@@ -10,6 +10,9 @@ Socialhub::Application.routes.draw do
   get "page/jokes"
   get "page/inbox"
   get "page/send_friend_request"
+  get "page/cancel_friend_request"
+  get "page/accept_friend_request"
+
 
   authenticated :user do
     root :to => "page#index"

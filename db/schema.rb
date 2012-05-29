@@ -15,11 +15,14 @@ ActiveRecord::Schema.define(:version => 20120524161047) do
 
   create_table "friends", :force => true do |t|
     t.string   "status",     :default => "pending", :null => false
-    t.integer  "user_id"
-    t.integer  "friend_id"
+    t.integer  "user_id",                           :null => false
+    t.integer  "friend_id",                         :null => false
     t.datetime "created_at",                        :null => false
     t.datetime "updated_at",                        :null => false
   end
+
+  add_index "friends", ["friend_id"], :name => "index_friends_on_friend_id"
+  add_index "friends", ["user_id"], :name => "index_friends_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

@@ -6,7 +6,9 @@
       <div>
         <%= result.email %> |
         <%= link_to "View profile", :controller => "page", :action => "profile", :id => result %> |
-        <%= link_to "Add friend", :controller => "page", :action => :send_friend_request, :id => result %> |
+        <% unless result == current_user %>
+          <%= link_to "Add friend", :controller => "page", :action => :send_friend_request, :id => result %> |
+        <% end %>
         <%= link_to "Send message", page_settings_path %>
       </div>
     <% end %>
